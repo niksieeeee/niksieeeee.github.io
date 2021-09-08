@@ -12,7 +12,7 @@
                 background-color: #FFFFFA;
                 width: 300px;
                 height: 300px;
-                border: 2px solid #3A3A3A;
+                border: 4px solid #3A3A3A;
                                
                 position:absolute;
                 top:50%;
@@ -26,7 +26,9 @@
                 background-color: #3A3A3A;
                 width: 60px;
                 height: 60px;
-                border: 2px solid #3A3A3A;
+                border: 2px solid transparent
+                
+                ;
                 display: none;
              }
         </style>
@@ -40,7 +42,7 @@
                 }
 
                 // hide all ogen
-                $(".oog").hide();
+                $(".oog").hide();     
 
                 // geef het cijfer weer op de dobbelsteens
                 $(".o" + cijfer).show();                
@@ -53,10 +55,35 @@
                 console.log(rand);
             }
             
-
+            let delay = 200;
+            var isRunning = false;
+            
             $(document).ready(function() {
                 $(".box").click(function(){
+                    if (isRunning) {
+                        return;
+                    }
+                    isRunning = true;
                     random();
+                    setTimeout(function() {
+                        random();   
+                    }, delay);
+                    setTimeout(function() {
+                        random();   
+                    }, delay * 2);
+                    setTimeout(function() {
+                        random();   
+                    }, delay * 3);
+                    setTimeout(function() {
+                        random(); 
+                        $(".box").css("border", "8px solid green");
+                        $(".oog").css("background", "green");
+                        setTimeout(function() {
+                            $(".box").css("border", "4px solid #3A3A3A");
+                            $(".oog").css("background", "#3A3A3A");
+                            isRunning = false;
+                        }, delay * 10);
+                    }, delay * 4);
                 });
             });
         </script>
