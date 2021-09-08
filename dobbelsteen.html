@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #d0d0ff;
+                font-family:verdana;
+                text-align: center;
+            }
+            div.box {
+                border-radius: 25px;
+                background-color: #FFFFFA;
+                width: 300px;
+                height: 300px;
+                border: 2px solid black;
+                               
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform: translate(-50%, -50%);
+             }
+
+             .oog {
+                position:absolute;
+                border-radius: 100%;
+                background-color: #FFFFFA;
+                width: 60px;
+                height: 60px;
+                border: 2px solid black;
+                display: none;
+             }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            function ogen(cijfer) {
+                if (typeof cijfer != 'number' || cijfer > 6 || cijfer < 1) {
+                    // cijfer past niet op dobbelsteen?
+                    // -> afbreken || wat geef je weer?
+                    return;
+                }
+
+                // hide all ogen
+                $(".oog").hide();
+
+                // geef het cijfer weer op de dobbelsteens
+                $(".o" + cijfer).show();                
+            }
+            function random() {
+                let max = 7;
+                let min = 1;
+                let rand = Math.floor(Math.random() * (max - min) + min);
+                ogen(rand);
+                console.log(rand);
+            }
+            
+
+            $(document).ready(function() {
+                $(".box").click(function(){
+                    random();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>The Dice</h1>
+        <p> Klik de dobbelsteen</p>
+        <div class="box">
+            <div style="top: calc(50% - ((60px + 4px)/2)); left: calc(50% - ((60px + 4px)/2));" class="oog o1 o3 o5"></div>
+            <div style="top: calc(20% - ((60px + 4px)/2)); left: calc(80% - ((60px + 4px)/2));" class="oog o2 o3 o4 o5 o6"></div>
+            <div style="top: calc(50% - ((60px + 4px)/2)); left: calc(80% - ((60px + 4px)/2));" class="oog o6"></div>
+            <div style="top: calc(80% - ((60px + 4px)/2)); left: calc(80% - ((60px + 4px)/2));" class="oog o4 o5 o6"></div>
+            <div style="top: calc(20% - ((60px + 4px)/2)); left: calc(20% - ((60px + 4px)/2));" class="oog o4 o5 o6"></div>
+            <div style="top: calc(50% - ((60px + 4px)/2)); left: calc(20% - ((60px + 4px)/2));" class="oog o6"></div>
+            <div style="top: calc(80% - ((60px + 4px)/2)); left: calc(20% - ((60px + 4px)/2));" class="oog o2 o3 o4 o5 o6"></div>
+        </div>
+    </body>
+</html>
+
